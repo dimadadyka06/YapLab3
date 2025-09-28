@@ -1,6 +1,6 @@
 from decimal import Decimal, getcontext
 from fractions import Fraction
-from datetime import datetime
+from datetime import datetime, date
 
 
 #1
@@ -126,4 +126,29 @@ print()
 
 print("3. Только текущее время:")
 print(f" {current_datetime.strftime('%H:%M:%S')}")
+
+
+#9
+print("=== ВЫЧИСЛЕНИЕ РАЗНИЦЫ ДАТ ===")
+print()
+
+birthday_input = input("Введите вашу дату рождения (дд.мм.гггг): ")
+birthday = datetime.strptime(birthday_input, "%d.%m.%Y").date()
+
+today = date.today()
+
+print(f"Дата рождения: {birthday.strftime('%d.%m.%Y')}")
+print(f"Сегодняшняя дата: {today.strftime('%d.%m.%Y')}")
+print()
+
+days_passed = (today - birthday).days
+print(f"С момента рождения прошло: {days_passed} дней")
+
+next_birthday = date(today.year, birthday.month, birthday.day)
+
+if next_birthday < today:
+    next_birthday = date(today.year + 1, birthday.month, birthday.day)
+
+days_to_birthday = (next_birthday - today).days
+print(f" До следующего дня рождения: {days_to_birthday} дней")
 
