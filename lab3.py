@@ -1,4 +1,5 @@
 from decimal import Decimal, getcontext
+from fractions import Fraction
 
 
 #1
@@ -56,31 +57,53 @@ print("все слова в верхнем регистре и длинее 3-х
 
 
 #6
-def detailed_deposit_calculator():
+# def detailed_deposit_calculator():
+#
+#     getcontext().prec = 10
+#     print("=== ДЕТАЛЬНЫЙ ФИНАНСОВЫЙ КАЛЬКУЛЯТОР ===")
+#
+#     initial_amount = Decimal(input("Начальная сумма: "))
+#     interest_rate = Decimal(input("Годовая ставка (%): "))
+#     years = Decimal(input("Срок (лет): "))
+#
+#     # Расчет месячной процентной ставки
+#     monthly_rate = interest_rate / (Decimal('12') * Decimal('100'))
+#     print(f"Месячная ставка: {monthly_rate:.6f}")
+#
+#     # Количество месяцев капитализации
+#     months = Decimal('12') * years
+#     final_amount = initial_amount * ((Decimal('1') + monthly_rate) ** months)
+#     final_amount = final_amount.quantize(Decimal('0.01'))  # Округление до копеек
+#
+#     profit = final_amount - initial_amount
+#     profit = profit.quantize(Decimal('0.01'))
+#
+#     print("\nИТОГИ:")
+#     print(f"Через {years} лет:")
+#     print(f"Начальные инвестиции: {initial_amount} ₽")
+#     print(f"Итоговая сумма:       {final_amount} ₽")
+#     print(f"Чистая прибыль:       {profit} ₽")
+#
+# detailed_deposit_calculator()
 
-    getcontext().prec = 10
-    print("=== ДЕТАЛЬНЫЙ ФИНАНСОВЫЙ КАЛЬКУЛЯТОР ===")
 
-    initial_amount = Decimal(input("Начальная сумма: "))
-    interest_rate = Decimal(input("Годовая ставка (%): "))
-    years = Decimal(input("Срок (лет): "))
 
-    # Расчет месячной процентной ставки
-    monthly_rate = interest_rate / (Decimal('12') * Decimal('100'))
-    print(f"Месячная ставка: {monthly_rate:.6f}")
+#7
+fraction1 = Fraction(3, 4)
+fraction2 = Fraction(5, 6)
 
-    # Количество месяцев капитализации
-    months = Decimal('12') * years
-    final_amount = initial_amount * ((Decimal('1') + monthly_rate) ** months)
-    final_amount = final_amount.quantize(Decimal('0.01'))  # Округление до копеек
+print("Исходные дроби:")
+print(f"Дробь 1: {fraction1}")
+print(f"Дробь 2: {fraction2}")
+print()
 
-    profit = final_amount - initial_amount
-    profit = profit.quantize(Decimal('0.01'))
+summa = fraction1 + fraction2
+vichitanie = fraction1 - fraction2
+multiplication = fraction1 * fraction2
+delenie = fraction1 / fraction2
 
-    print("\nИТОГИ:")
-    print(f"Через {years} лет:")
-    print(f"Начальные инвестиции: {initial_amount} ₽")
-    print(f"Итоговая сумма:       {final_amount} ₽")
-    print(f"Чистая прибыль:       {profit} ₽")
-
-detailed_deposit_calculator()
+print("Результаты операций (несократимые дроби):")
+print(f"Сложение: {fraction1} + {fraction2} = {summa}")
+print(f"Вычитание: {fraction1} - {fraction2} = {vichitanie}")
+print(f"Умножение: {fraction1} × {fraction2} = {multiplication}")
+print(f"Деление: {fraction1} ÷ {fraction2} = {delenie}")
