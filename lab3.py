@@ -1,5 +1,6 @@
 from decimal import Decimal, getcontext
 from fractions import Fraction
+from datetime import datetime
 
 
 #1
@@ -107,3 +108,22 @@ print(f"Сложение: {fraction1} + {fraction2} = {summa}")
 print(f"Вычитание: {fraction1} - {fraction2} = {vichitanie}")
 print(f"Умножение: {fraction1} × {fraction2} = {multiplication}")
 print(f"Деление: {fraction1} ÷ {fraction2} = {delenie}")
+
+
+#8
+current_datetime = datetime.now()
+
+print("=== ТЕКУЩАЯ ДАТА И ВРЕМЯ ===")
+print()
+
+print("1. Текущая дата и время:")
+print(f"{current_datetime.strftime('%d.%m.%Y %H:%M:%S')}")
+print()
+
+print("2. Только текущая дата:")
+print(f"{current_datetime.strftime('%d.%m.%Y')}")
+print()
+
+print("3. Только текущее время:")
+print(f" {current_datetime.strftime('%H:%M:%S')}")
+
