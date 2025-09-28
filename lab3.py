@@ -12,3 +12,25 @@ print("список только четных чисел из диапазона
 words = ["python", "java", "c++", "rust", "go"]
 result = [word.upper() for word in words if len(word) > 3]
 print("все слова в верхнем регистре и длинее 3-х символов\n",result)
+
+
+#4
+class Countdown:
+    def __init__(self, n):
+        self.n = n
+        self.current = n
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < 1:
+            raise StopIteration
+        value = self.current
+        self.current -= 1
+        return value
+
+sim = int(input("введи число"))
+print("класс итератор который возвращает число от",sim," до 1")
+for x in Countdown(sim):
+    print(x)
