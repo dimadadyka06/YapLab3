@@ -20,72 +20,72 @@ print("все слова в верхнем регистре и длинее 3-х
 
 
 #4
-# class Countdown:
-#     def __init__(self, n):
-#         self.n = n
-#         self.current = n
-#
-#     def __iter__(self):
-#         return self
-#
-#     def __next__(self):
-#         if self.current < 1:
-#             raise StopIteration
-#         value = self.current
-#         self.current -= 1
-#         return value
-#
-# sim = int(input("введи число"))
-# print("класс итератор который возвращает число от",sim," до 1")
-# for x in Countdown(sim):
-#     print(x)
+class Countdown:
+    def __init__(self, n):
+        self.n = n
+        self.current = n
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < 1:
+            raise StopIteration
+        value = self.current
+        self.current -= 1
+        return value
+
+sim = int(input("введи число"))
+print("класс итератор который возвращает число от",sim," до 1")
+for x in Countdown(sim):
+    print(x)
 
 
 #5
-# def fibonacci(n):
-#     a, b = 0, 1
-#     count = 0
-#     while count < n:
-#         yield a
-#         a, b = b, a + b
-#         count += 1
-#
-# print("генератор фибоначи")
-# n1 = int(input("введи длину фибоначи: "))
-# print("числа фибоначи")
-# for num in fibonacci(n1):
-#     print(num, end=" ")
+def fibonacci(n):
+    a, b = 0, 1
+    count = 0
+    while count < n:
+        yield a
+        a, b = b, a + b
+        count += 1
+
+print("генератор фибоначи")
+n1 = int(input("введи длину фибоначи: "))
+print("числа фибоначи")
+for num in fibonacci(n1):
+    print(num, end=" ")
 
 
 #6
-# def detailed_deposit_calculator():
-#
-#     getcontext().prec = 10
-#     print("=== ДЕТАЛЬНЫЙ ФИНАНСОВЫЙ КАЛЬКУЛЯТОР ===")
-#
-#     initial_amount = Decimal(input("Начальная сумма: "))
-#     interest_rate = Decimal(input("Годовая ставка (%): "))
-#     years = Decimal(input("Срок (лет): "))
-#
-#     # Расчет месячной процентной ставки
-#     monthly_rate = interest_rate / (Decimal('12') * Decimal('100'))
-#     print(f"Месячная ставка: {monthly_rate:.6f}")
-#
-#     # Количество месяцев капитализации
-#     months = Decimal('12') * years
-#     final_amount = initial_amount * ((Decimal('1') + monthly_rate) ** months)
-#     final_amount = final_amount.quantize(Decimal('0.01'))  # Округление до копеек
-#
-#     profit = final_amount - initial_amount
-#     profit = profit.quantize(Decimal('0.01'))
-#
-#     print("\nИТОГИ:")
-#     print(f"Через {years} лет:")
-#     print(f"Начальные инвестиции: {initial_amount} ₽")
-#     print(f"Итоговая сумма:       {final_amount} ₽")
-#     print(f"Чистая прибыль:       {profit} ₽")
-#
-# detailed_deposit_calculator()
+def detailed_deposit_calculator():
+
+    getcontext().prec = 10
+    print("=== ДЕТАЛЬНЫЙ ФИНАНСОВЫЙ КАЛЬКУЛЯТОР ===")
+
+    initial_amount = Decimal(input("Начальная сумма: "))
+    interest_rate = Decimal(input("Годовая ставка (%): "))
+    years = Decimal(input("Срок (лет): "))
+
+    # Расчет месячной процентной ставки
+    monthly_rate = interest_rate / (Decimal('12') * Decimal('100'))
+    print(f"Месячная ставка: {monthly_rate:.6f}")
+
+    # Количество месяцев капитализации
+    months = Decimal('12') * years
+    final_amount = initial_amount * ((Decimal('1') + monthly_rate) ** months)
+    final_amount = final_amount.quantize(Decimal('0.01'))  # Округление до копеек
+
+    profit = final_amount - initial_amount
+    profit = profit.quantize(Decimal('0.01'))
+
+    print("\nИТОГИ:")
+    print(f"Через {years} лет:")
+    print(f"Начальные инвестиции: {initial_amount} ₽")
+    print(f"Итоговая сумма:       {final_amount} ₽")
+    print(f"Чистая прибыль:       {profit} ₽")
+
+detailed_deposit_calculator()
 
 
 
@@ -152,3 +152,21 @@ if next_birthday < today:
 days_to_birthday = (next_birthday - today).days
 print(f" До следующего дня рождения: {days_to_birthday} дней")
 
+
+#10
+def format_datetime_russian(dt):
+
+    months = {
+        1: "января", 2: "февраля", 3: "марта", 4: "апреля",
+        5: "мая", 6: "июня", 7: "июля", 8: "августа",
+        9: "сентября", 10: "октября", 11: "ноября", 12: "декабря"
+    }
+    day = dt.day
+    month = months[dt.month]
+    year = dt.year
+    time = dt.strftime("%H:%M")
+    return f"\nСегодня {day} {month} {year} года, время: {time}"
+
+current_time = datetime.now()
+formatted_string = format_datetime_russian(current_time)
+print(formatted_string)
