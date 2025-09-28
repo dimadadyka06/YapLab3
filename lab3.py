@@ -1,3 +1,6 @@
+from decimal import Decimal, getcontext
+
+
 #1
 squares = [x**2 for x in range(1, 11)]
 print("список квадротов чисел от 1 до 10\n",squares)
@@ -15,40 +18,69 @@ print("все слова в верхнем регистре и длинее 3-х
 
 
 #4
-class Countdown:
-    def __init__(self, n):
-        self.n = n
-        self.current = n
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.current < 1:
-            raise StopIteration
-        value = self.current
-        self.current -= 1
-        return value
-
-sim = int(input("введи число"))
-print("класс итератор который возвращает число от",sim," до 1")
-for x in Countdown(sim):
-    print(x)
+# class Countdown:
+#     def __init__(self, n):
+#         self.n = n
+#         self.current = n
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.current < 1:
+#             raise StopIteration
+#         value = self.current
+#         self.current -= 1
+#         return value
+#
+# sim = int(input("введи число"))
+# print("класс итератор который возвращает число от",sim," до 1")
+# for x in Countdown(sim):
+#     print(x)
 
 
 #5
-def fibonacci(n):
-    a, b = 0, 1
-    count = 0
-    while count < n:
-        yield a
-        a, b = b, a + b
-        count += 1
+# def fibonacci(n):
+#     a, b = 0, 1
+#     count = 0
+#     while count < n:
+#         yield a
+#         a, b = b, a + b
+#         count += 1
+#
+# print("генератор фибоначи")
+# n1 = int(input("введи длину фибоначи: "))
+# print("числа фибоначи")
+# for num in fibonacci(n1):
+#     print(num, end=" ")
 
-print("генератор фибоначи")
-n1 = int(input("введи длину фибоначи: "))
-print("числа фибоначи")
-for num in fibonacci(n1):
-    print(num, end=" ")
 
+#6
+def detailed_deposit_calculator():
 
+    getcontext().prec = 10
+    print("=== ДЕТАЛЬНЫЙ ФИНАНСОВЫЙ КАЛЬКУЛЯТОР ===")
+
+    initial_amount = Decimal(input("Начальная сумма: "))
+    interest_rate = Decimal(input("Годовая ставка (%): "))
+    years = Decimal(input("Срок (лет): "))
+
+    # Расчет месячной процентной ставки
+    monthly_rate = interest_rate / (Decimal('12') * Decimal('100'))
+    print(f"Месячная ставка: {monthly_rate:.6f}")
+
+    # Количество месяцев капитализации
+    months = Decimal('12') * years
+    final_amount = initial_amount * ((Decimal('1') + monthly_rate) ** months)
+    final_amount = final_amount.quantize(Decimal('0.01'))  # Округление до копеек
+
+    profit = final_amount - initial_amount
+    profit = profit.quantize(Decimal('0.01'))
+
+    print("\nИТОГИ:")
+    print(f"Через {years} лет:")
+    print(f"Начальные инвестиции: {initial_amount} ₽")
+    print(f"Итоговая сумма:       {final_amount} ₽")
+    print(f"Чистая прибыль:       {profit} ₽")
+
+detailed_deposit_calculator()
