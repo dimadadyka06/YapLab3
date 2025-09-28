@@ -34,3 +34,21 @@ sim = int(input("введи число"))
 print("класс итератор который возвращает число от",sim," до 1")
 for x in Countdown(sim):
     print(x)
+
+
+#5
+def fibonacci(n):
+    a, b = 0, 1
+    count = 0
+    while count < n:
+        yield a
+        a, b = b, a + b
+        count += 1
+
+print("генератор фибоначи")
+n1 = int(input("введи длину фибоначи: "))
+print("числа фибоначи")
+for num in fibonacci(n1):
+    print(num, end=" ")
+
+
